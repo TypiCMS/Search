@@ -13,7 +13,6 @@ class ModuleServiceProvider extends ServiceProvider
         $this->app['config']->set('typicms.modules', array_merge(['search' => ['linkable_to_page']], $modules));
 
         $this->loadViewsFrom(__DIR__.'/../resources/views/', 'search');
-        $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'search');
 
         $this->publishes([
             __DIR__.'/../resources/views' => base_path('resources/views/vendor/search'),
