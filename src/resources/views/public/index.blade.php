@@ -16,7 +16,7 @@
                 <div class="search-results-content">
                     @foreach ($results as $key => $result)
                     <div class="search-results-module">
-                        <h2 class="search-results-module-title">{{ $result['models']->count() }} @choice('search-results.'.$result['module'], $result['models']->count())</h2>
+                        <h2 class="search-results-module-title">{{ $result['models']->count() }} @choice(__($result['module']), $result['models']->count())</h2>
                         <div class="search-results-module-results">
                             @include($result['module'].'::public._list-results', ['items' => $result['models']])
                         </div>

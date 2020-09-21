@@ -6,6 +6,7 @@ use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvi
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 use TypiCMS\Modules\Core\Facades\TypiCMS;
+use TypiCMS\Modules\Search\Http\Controllers\PublicController;
 
 class RouteServiceProvider extends ServiceProvider
 {

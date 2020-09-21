@@ -23,7 +23,7 @@ class PublicController extends BasePublicController
                 ->withErrors($validator);
         }
 
-        $config = config('search');
+        $config = config('typicms.search');
         $words = array_filter(explode(' ', $request->search));
 
         foreach ($config as $key => $data) {
