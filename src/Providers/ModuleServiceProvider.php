@@ -9,6 +9,8 @@ class ModuleServiceProvider extends ServiceProvider
 {
     public function boot()
     {
+        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'typicms.search');
+
         $modules = $this->app['config']['typicms']['modules'];
         $this->app['config']->set('typicms.modules', array_merge(['search' => ['linkable_to_page']], $modules));
 
@@ -17,10 +19,6 @@ class ModuleServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../resources/views' => base_path('resources/views/vendor/search'),
         ], 'views');
-
-        $this->publishes([
-            __DIR__.'/../config/config.php' => config_path('search.php'),
-        ], 'config');
 
         /*
          * Add the page in the view.
