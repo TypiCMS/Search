@@ -25,7 +25,7 @@ class ModuleServiceProvider extends ServiceProvider
         /*
          * Add the page in the view.
          */
-        $app->view->composer('search::public.*', function ($view) {
+        $this->app->view->composer('search::public.*', function ($view) {
             $view->page = TypiCMS::getPageLinkedToModule('search');
         });
     }
