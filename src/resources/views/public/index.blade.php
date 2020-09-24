@@ -4,9 +4,11 @@
 
 @section('page')
 
-<div class="container pt-5">
+<div class="page-body">
 
-    @if (!$errors->has('search'))
+    <div class="page-body-container">
+
+        @if (!$errors->has('search'))
         <div class="search-results">
 
             <h1 class="search-results-title">@lang('Search results for “:search”', ['search' => request('search')])</h1>
@@ -31,9 +33,11 @@
             @endif
 
         </div>
-    @else
+        @else
         <p class="search-results-no-results text-center">{{ $errors->first('search') }}</p>
-    @endif
+        @endif
+
+    </div>
 
 </div>
 
