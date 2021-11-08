@@ -46,19 +46,19 @@ class PublicController extends BasePublicController
                         }
                     });
                     if ($key === 'pages') { // search in page sections
-                        $query->orWhere(function ($query) use ($words, $column, $model, $key) {
+                        $query->orWhere(function ($query) use ($words, $column, $model) {
                             $query->published();
                             $query->whereHas('sections', function (Builder $query) use ($words, $column, $model) {
                                 foreach ($words as $word) {
                                     $word = addslashes($word);
                                     if (in_array($column, (array) $model->translatable)) {
                                         $query->published()->whereRaw(
-                                        'JSON_UNQUOTE(JSON_EXTRACT(`'.$column.'`, \'$.'.app()->getLocale().'\')) LIKE \'%'.$word.'%\' COLLATE utf8mb4_unicode_ci'
-                                    );
+                                            'JSON_UNQUOTE(JSON_EXTRACT(`'.$column.'`, \'$.'.app()->getLocale().'\')) LIKE \'%'.$word.'%\' COLLATE utf8mb4_unicode_ci'
+                                        );
                                     } else {
                                         $query->published()->whereRaw(
-                                        '`'.$column.'` LIKE \'%'.$word.'%\' COLLATE utf8mb4_unicode_ci'
-                                    );
+                                            '`'.$column.'` LIKE \'%'.$word.'%\' COLLATE utf8mb4_unicode_ci'
+                                        );
                                     }
                                 }
                             });
