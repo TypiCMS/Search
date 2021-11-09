@@ -2,17 +2,17 @@
 
 namespace TypiCMS\Modules\Search\Providers;
 
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use TypiCMS\Modules\Core\Facades\TypiCMS;
 
 class ModuleServiceProvider extends ServiceProvider
 {
-    public function boot()
+    public function boot(): void
     {
         $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'typicms.search');
 
-        $modules = $this->app['config']['typicms']['modules'];
-        $this->app['config']->set('typicms.modules', array_merge(['search' => ['linkable_to_page']], $modules));
+        config(['typicms.modules.search' => ['linkable_to_page']]);
 
         $this->loadViewsFrom(__DIR__.'/../../resources/views/', 'search');
 
@@ -23,18 +23,13 @@ class ModuleServiceProvider extends ServiceProvider
         /*
          * Add the page in the view.
          */
-        $this->app->view->composer('search::public.*', function ($view) {
+        View::composer('search::public.*', function ($view) {
             $view->page = TypiCMS::getPageLinkedToModule('search');
         });
     }
 
-    public function register()
+    public function register(): void
     {
-        $app = $this->app;
-
-        /*
-         * Register route service provider
-         */
-        $app->register(RouteServiceProvider::class);
+        $this->app->register(RouteServiceProvider::class);
     }
 }
